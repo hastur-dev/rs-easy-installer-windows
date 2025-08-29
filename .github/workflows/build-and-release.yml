@@ -1,5 +1,9 @@
 name: Build and Release Rust MSVC Installer
 
+permissions:
+  contents: write
+  actions: read
+
 on:
   push:
     branches:
@@ -234,10 +238,7 @@ jobs:
         tag_name: ${{ steps.release_tag.outputs.tag }}
         name: "Rust MSVC Installer ${{ steps.release_tag.outputs.tag }}"
         body_path: release-notes.md
-        files: |
-          ./artifacts/rs-easy-installer-windows.exe
-          ./artifacts/README.md
-          ./artifacts/LICENSE
+        files: ./artifacts/*
         draft: false
         prerelease: ${{ contains(steps.release_tag.outputs.tag, 'beta') || contains(steps.release_tag.outputs.tag, 'alpha') }}
       env:
