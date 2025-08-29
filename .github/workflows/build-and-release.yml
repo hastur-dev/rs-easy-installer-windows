@@ -3,12 +3,12 @@ name: Build and Release Rust MSVC Installer
 on:
   push:
     branches:
-      - vs-c++-method
+      - vs-c**-method
     tags:
       - 'v*'
   pull_request:
     branches:
-      - vs-c++-method
+      - vs-c**-method
   workflow_dispatch:
     inputs:
       create_release:
@@ -35,7 +35,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: vs-c++-method
+        ref: vs-c**-method
     
     - name: Install Rust toolchain
       uses: dtolnay/rust-toolchain@stable
@@ -147,7 +147,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: vs-c++-method
+        ref: vs-c**-method
     
     - name: Download build artifacts
       uses: actions/download-artifact@v4
